@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+#The until loop
+
+WORD=0
+until [ $WORD -eq 10 ]
+do
+echo "Best School"
+sleep 1
+WORD=$((WORD+1))
+done
