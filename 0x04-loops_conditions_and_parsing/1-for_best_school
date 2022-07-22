@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #This is a script displaying "Best School" 10 times
 
-Best School = 10
+Best School=10
 for _ in $(seq 1 $"Best School");
   do
   echo "Best School";
