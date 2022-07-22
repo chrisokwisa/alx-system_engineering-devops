@@ -3,6 +3,6 @@
 
 Best School = 10
 for _ in $(seq 1 $"Best School");
-do
-echo "Best School";
+  do
+  echo "Best School";
 done
