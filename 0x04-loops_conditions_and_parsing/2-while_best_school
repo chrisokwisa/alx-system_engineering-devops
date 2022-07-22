@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-#Displays Best school 10 times using while loop
+#Displays the while loop
 
-word=10
+word=1
 while [ $word -le 10 ]
 do
-	echo "Best school"
-	((word++))
+    echo "Best School"
+    ((count++))
 done
