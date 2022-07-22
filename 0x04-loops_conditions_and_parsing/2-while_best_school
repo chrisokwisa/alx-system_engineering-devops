@@ -4,6 +4,6 @@
 WORD=0
 while [ $WORD -ge 10 ]
 do
-	echo "Best School"
-	((word++))
+    echo "Best School"
+    ((word++))
 done
