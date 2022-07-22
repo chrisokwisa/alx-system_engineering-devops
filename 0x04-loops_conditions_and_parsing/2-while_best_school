@@ -1,4 +1,4 @@
-#!/usr/env/bash
+#!/usr/bin/env bash
 #Displays Best school 10 times using while loop
 
 Best school=10
