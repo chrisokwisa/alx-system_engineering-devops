@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 #Displays the while loop
 
-word=0
-while [ $word -ge 10 ]
+WORD=0
+while [ $WORD -ge 10 ]
 do
 echo "Best School"
 sleep 1
-word=$((word-1))
+WORD=$((WORD-1))
 done
