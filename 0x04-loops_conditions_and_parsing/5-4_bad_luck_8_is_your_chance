@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 #4 bad luck, 8 is your chance
 
-count=0
+count=1
 while [ $count -ne 11 ]
 do
     if [ $count -eq 4 ]; then
-	    echo "bad luck"
+	echo "bad luck"
     elif [ $count -eq 8 ]; then
-	    echo "good luck"
+	echo "good luck"
     else
-	    echo "Best School"
+	echo "Best School"
     fi
-    ((count))
+    ((count++))
 done
