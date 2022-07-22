@@ -5,6 +5,6 @@ word=10
 while [ $word -ge 10 ]
 do
 	echo "Best School"
-	word=$((word++))
+	word=$((word - 1))
 done
 
