@@ -2,7 +2,7 @@
 #This is a script displaying "Best School" 10 times
 
 Best School=10
-for _ in $(seq 1 $"Best School");
+for _ in $(seq 1 $"Best School")
   do
-  echo "Best School";
+  echo "Best School"
 done
