@@ -2,8 +2,9 @@
 #Displays Best school 10 times using while loop
 
 word=10
-while _ in $(seq 1 $word);
+while [ $word -ge 10 ]
 do
-echo "Best school";
+	echo "Best School"
+	word=$((word++))
 done
 
