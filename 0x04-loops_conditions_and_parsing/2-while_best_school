@@ -3,7 +3,7 @@
 
 word=10
 while [ $word -ge 10 ]
-do
+    do
     echo "Best School"
     sleep 1
     word=$((word-1))
