@@ -3,8 +3,8 @@
 
 word=10
 while [ $word -le 10 ]
-	do
+do
 	echo "Best School"
-	word=$((word++))
+	((word++))
 done
 
