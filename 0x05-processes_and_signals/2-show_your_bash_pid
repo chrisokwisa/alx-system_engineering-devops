@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+#lists all bash processes
+
+ps axu |grep "bash"
