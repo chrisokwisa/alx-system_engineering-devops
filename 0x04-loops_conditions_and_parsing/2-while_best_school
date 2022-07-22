@@ -2,8 +2,9 @@
 #Displays the while loop
 
 word=10
-while [ $word -le 10 ]
+while [ $word -ge 10 ]
 do
     echo "Best School"
-    ((count++))
+    sleep 1
+    word=$((word-1))
 done
