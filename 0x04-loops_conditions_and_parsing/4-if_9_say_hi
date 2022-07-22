@@ -12,4 +12,3 @@ echo "Best School"
 fi
 ((school++))
 done
-
