@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
 #lists all bash processes
 
+# shellcheck disable=SC2009
 ps axu |grep "bash"
