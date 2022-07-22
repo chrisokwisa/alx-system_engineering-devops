@@ -2,9 +2,8 @@
 #Displays the while loop
 
 WORD=0
-while [ $WORD -ge 10 ]
+while [ $WORD -le 10 ]
 do
-echo "Best School"
-sleep 1
-WORD=$((WORD-1))
+	echo "Best School"
+	((word++))
 done
