@@ -1,13 +1,8 @@
 #!/usr/bin/env bash
 #Displays the while loop
 
-<<<<<<< HEAD
 WORD=0
-while [ $WORD -le 10 ]
-=======
-WORD=10
 while [ $WORD -ge 10 ]
->>>>>>> f39a3bc863416d92f6eeaf2f57c8f3a949686135
 do
 	echo "Best School"
 	((word++))
