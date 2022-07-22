@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #Displays the while loop
 
-WORD=0
+WORD=10
 while [ $WORD -ge 10 ]
 do
 echo "Best School"
