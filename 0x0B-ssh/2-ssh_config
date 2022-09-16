@@ -1,4 +1,4 @@
-#ssh config
+#ssh configuration
 MyPass yes
 IdentityFile ~/.ssh/school
 PasswordAuthentication no
