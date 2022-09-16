@@ -1,5 +1,5 @@
 #Install a flask package
-package { 'flask':
+package {'flask':
   ensure   => '2.1.0',
   provider => 'gem',
 }
