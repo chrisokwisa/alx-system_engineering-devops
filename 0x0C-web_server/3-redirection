@@ -1,18 +1,20 @@
 #!/usr/bin/env bash
-# Install nginx and start it
+# Installs, configures, and starts the server
+apt-get update
 apt-get -y install nginx
-
-# Firewall setting: Allow Nginx to serve on HTTP
-ufw allow 'Nginx HTTP'
-
-# Override the default index file served as home page
-echo "Holberton School" >> /var/www/html/index.html
-
-#Give the user  ownership to website files
-sudo chown -R $USER:$USER /var/www/html
+sudo ufw allow 'Nginx HTTP'
+mkdir -p /var/www/html/
 sudo chmod -R 755 /var/www
+echo 'Hello World!' > /var/www/html/index.html
+printf %s "server {
+	listen 80 default_server;
+	listen [::]:80 default_server;
+	root /var/www/html;
+	index index.html index.htm index.nginx-debian.html;	
 
-# Redirect to /redirect_me to a youtube video
-sed -i '37i\rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;' /etc/nginx/sites-available/default
+	    location /redirect_me {
+	            return 301 http://www.youtube.com/;
+		        }
+}" > /etc/nginx/sites-available/default
 
-service nginx start
+service nginx restart
