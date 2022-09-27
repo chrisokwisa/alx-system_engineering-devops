@@ -1,11 +1,21 @@
 #!/usr/bin/env bash
-#installs nginx and redirects to holberton school string
+#install nginx and prints Hello World string
+
+
 sudo apt-get -y update
 sudo apt-get -y install nginx
-file1=/usr/share/nginx/html/index.html
-file=/etc/nginx/sites-available/default
-sudo bash -c "echo 'Holberton School ftw!' > $file1"
-service nginx start
-phrase="location /redirect_me {\nreturn 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n}\n"
-sudo sed -i "30i $phrase" $file
+sudo ufw allow "Nginx HTTP"
+sudo chown -R $USER:$USER /var/www/html/index.nginx-debian.html
+sudo echo "Hello World!" > /var/www/html/index.nginx-debian.html
+printf %s "server {
+    listen 80;
+    listen [::]:80 default_server;
+    root /var/www/html;
+    index index.html index.htm;
+
+    location /redirect_me {
+    	return 301 http://www.youtube.com/;
+}
+}" > /etc/nginx/sites-available/default
+
 sudo service nginx restart
