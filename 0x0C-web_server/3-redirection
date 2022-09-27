@@ -1,31 +1,11 @@
 #!/usr/bin/env bash
-#install ngix and have a file that returns the string "Hello World inside
-
-sudo apt-get update
-sudo apt-get install nginx -y
-echo "Hello World!" | sudo tee /usr/share/nginx/html/index.html
-
-new_config=\
-"server {
-        listen 80 default_server;
-        listen [::]:80 default_server;
-               root /var/www/html;
-        index index.html index.htm index.nginx-debian.html;
-        server_name _;
-        location / {
-                try_files \$uri \$uri/ =404;
-        }
-        
-        if (\$request_filename ~ redirect_me){
-            rewrite ^ https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;
-        }
-}
-"
-
-echo "$new_config" > /etc/nginx/sites-available/default
-if [ "$(pgrep nginx)" -le 0 ];
-then
-    service nginx start
-else
-    service nginx restart
-fi;
+#installs nginx and redirects to holberton school string
+sudo apt-get -y update
+sudo apt-get -y install nginx
+file1=/usr/share/nginx/html/index.html
+file=/etc/nginx/sites-available/default
+sudo bash -c "echo 'Holberton School ftw!' > $file1"
+service nginx start
+phrase="location /redirect_me {\nreturn 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n}\n"
+sudo sed -i "30i $phrase" $file
+sudo service nginx restart
