@@ -1,37 +1,31 @@
 #!/usr/bin/env bash
-#install ngix and have a file that returns the string "Hello World inside
-
+# Installs, configures, and starts the server
 sudo apt-get update
-sudo apt-get install nginx -y
-echo "Hello World!" | sudo tee /usr/share/nginx/html/index.html
-
-new_config=\
+sudo apt-get -y install nginx
+sudo ufw allow 'Nginx HTTP'
+mkdir -p /var/www/html/
+sudo chmod -R 755 /var/www
+sudo echo 'Hello World!' > /var/www/html/index.nginx-debian.html
+SERVER_CONFIG=\
 "server {
-<<<<<<< HEAD
         listen 80 default_server;
         listen [::]:80 default_server;
-               root /var/www/html;
+        root /var/www/html;
         index index.html index.htm index.nginx-debian.html;
         server_name _;
         location / {
-                try_files \$uri \$uri/ =301;
+                try_files \$uri \$uri/ =404;
         }
-        
         if (\$request_filename ~ redirect_me){
-            rewrite ^ https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;
+                rewrite ^ https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;
         }
-=======
-    listen 80 default_server;
-    listen [::]:80 default_server;
-    root /var/www/html;
-    index index.html index.htm index.nginx-debian.html;
+}"
 
-    location /redirect_me {
-    	return 301 https://www.youtube.com/;
->>>>>>> 69370d446c7c6c43c2d04290c3c1f79be40c241d
-}
-"
+bash -c "echo -e '$SERVER_CONFIG' > /etc/nginx/sites-enabled/default"
 
-echo "$new_config" > /etc/nginx/sites-available/default
-
-sudo service nginx restart
+if [ "$(pgrep -c nginx)" -le 0 ]; then
+        sudo service nginx start
+else
+        sudo service nginx restart
+fi
+~          
