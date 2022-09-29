@@ -1,38 +1,11 @@
 #!/usr/bin/env bash
-#Instals, configures, and starts the load balancer
-sudo apt-get update
-sudo apt-get -y install --no-install-recommends software-properties-common
-sudo add-get-repository -y ppa:vbernat/haproxy-1.8
-apt-get update
-apt-get install -y haproxy=1.8.\*
+# Installs and confihures HAproxy on load balancer
 
-echo "ENABLED=1" >> /etc/default/haproxy
-mv /etc/haproxy/haproxy.cfg{,.original}
-touch /etc/haproxy/haproxy.cfg
 
-printf %s "global
-    log 127.0.0.1 local0 notice
-    maxconn 2000
-    user haproxy
-    group haproxy
-
-defaults
-    log     global
-    mode    http
-    option  httplog
-    option  dontlognull
-    retries 3
-    option redispatch
-    timeout connect 5000
-    timeout client  10000
-    timeout server  10000
-
-listen
-    bind *:80
-    mode http
-    balance roundrobin
-    option redirection
-    server 20877-web-:01 44.200.74.227 check
-    server 20877-web-02 18.232.49.201 check
-" >> /etc/haproxy/haproxy.cfg
-
+sudo apt-get -y update
+sudo apt-get -y upgrade
+sudo apt-get -y install haproxy
+sudo sed -i 's/ENABLED=0/ENABLED=1/' /etc/default/haproxy
+sudo cp /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.original
+sudo sed -i "$ a\listen 20877-lb-01\n\tbind *:80\n\tmode http\n\tbalance roundrobin\n\toption httpclose\n\toption forwardfor\n\tserver 20877-web-02 18.232.49.201 check\n\tserver 20877-web-01 44.200.74.227 check" /etc/haproxy/haproxy.cfg
+sudo service haproxy start
