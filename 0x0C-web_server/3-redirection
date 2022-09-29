@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+<<<<<<< HEAD
 # Installs, configures, and starts the server
 sudo apt-get update
 sudo apt-get -y install nginx
@@ -28,3 +29,47 @@ if [ "$(pgrep -c nginx)" -le 0 ]; then
 else
 	sudo service nginx restart
 fi
+=======
+<<<<<<< HEAD
+# Installs, configures, and starts the server
+sudo apt-get update
+sudo apt-get -y install nginx
+sudo ufw allow 'Nginx HTTP'
+mkdir -p /var/www/html/
+sudo chmod -R 755 /var/www
+sudo echo 'Hello World!' > /var/www/html/index.nginx-debian.html
+SERVER_CONFIG=\
+"server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+        root /var/www/html;
+        index index.html index.htm index.nginx-debian.html;
+        server_name _;
+        location / {
+                try_files \$uri \$uri/ =404;
+        }
+        if (\$request_filename ~ redirect_me){
+                rewrite ^ https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;
+        }
+}"
+
+bash -c "echo -e '$SERVER_CONFIG' > /etc/nginx/sites-enabled/default"
+
+if [ "$(pgrep -c nginx)" -le 0 ]; then
+        sudo service nginx start
+else
+        sudo service nginx restart
+fi
+~          
+=======
+# Install nginx on web server; Nginx should be listening on port 80
+# redirects to another page
+
+sudo apt-get -y update
+sudo apt-get -y install nginx
+sudo ufw allow 'Nginx HTTP'
+echo "Hello World!" > sudo /var/www/html/index.nginx-debian.html
+sed -i "/listen 80 default_server;/a rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;" /etc/nginx/sites-available/default
+sudo service nginx start
+>>>>>>> 61019c591d0f9a56cd3709595ac5d4d5f3d5a6f0
+>>>>>>> fd9031ceed69601a1cf361868bc1437bba531bc0
