@@ -1,0 +1,21 @@
+global
+        #pass
+	tune.ssl.default-dh-param 2048
+defaults
+        mode    http
+        option httpclose
+        timeout connect 5000ms
+        timeout client  5000ms
+        timeout server  5000ms
+frontend app
+        bind *:80
+	bind *:443 ssl crt home/ubuntu/certificate.pem
+	http-request redirect scheme https if !{ ssl_fc }
+	http-request set-header X-Forwarded-Proto https if { ssl_fc }
+	http-request set-header X-Forwarded-Proto http if !{ ssl_fc }
+	stats uri /haproxy?stats
+        default_backend web-backend
+backend web-backend
+        balance roundrobin
+        server 20877-web-01 44.200.74.227:80 check
+        server 20877-web-02 44.192.253.142:80 check
