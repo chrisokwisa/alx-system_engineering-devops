@@ -1,8 +1,0 @@
-# configure ufw so that it blocks all incoming traffic
-# except 22 (SSH), 443 (HTTPS SSL) and 80(http)
-sudo ufw default deny incoming
-sudo ufw default allow outgoing
-sudo ufw allow ssh
-sudo ufw allow https
-sudo ufw allow http
-sudo ufw enable
