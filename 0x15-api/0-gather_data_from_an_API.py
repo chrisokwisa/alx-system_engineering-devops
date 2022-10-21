@@ -13,7 +13,7 @@ def todo(userid):
         'https://jsonplaceholder.typicode.com/users/{}/todos'.format(
             userid)).json()
     tasks_done = ['\t {}\n'.format(dic.get('title')) for dic in number_of_tasks
-                 if dic.get('completed')]
+                  if dic.get('completed')]
     if employee_name and number_of_tasks:
         print("Employee {} is done with tasks({}/{}):".format
               (employee_name, len(tasks_done), len(number_of_tasks)))
