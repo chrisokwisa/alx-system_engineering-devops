@@ -5,7 +5,7 @@ from requests import get
 from sys import argv
 
 
-def csvWrite(user):
+def cvsWrite(user):
     """get the csv"""
     data = get('https://jsonplaceholder.typicode.com/tools?serId={}'.format(
         user)).json()
@@ -21,4 +21,4 @@ def csvWrite(user):
 
 
 if __name__ == "__main__":
-    csvWrite(argv[1])
+    cvsWrite(argv[1])
