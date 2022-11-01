@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-# csv exported
+""" contains a script that import list of dictionaries"""
 import json
 from requests import get
 from sys import argv
