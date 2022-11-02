@@ -6,7 +6,7 @@ from sys import argv
 
 def recurse(subreddit, hotlist=[], after=None):
     """ subscribers """
-    head = {'User-Agent': 'abc'}
+    head = {'User-Agent': 'Chris Brown'}
     try:
         if after:
             count = get('https://www.reddit.com/r/{}/hot.json?after={}'.format(
@@ -15,7 +15,7 @@ def recurse(subreddit, hotlist=[], after=None):
             count = get('https://www/reddit.com/r/{}/hot.json'.format(
                 subreddit), headers=head).json().get('data')
         hotlist += [dic.get('data').get('title')
-                for dic in count.get('children')]
+                    for dic in count.get('children')]
         if count.get('after'):
             return recurse(subreddit, hotlist, after=count.get('after'))
         return hotlist
