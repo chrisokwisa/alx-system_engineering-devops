@@ -6,7 +6,7 @@ from requests import get
 
 def number_of_subscribers(subreddit):
     """ subscriptions of the channel """
-    head = {'User-Agent': 'Abracadabra'}
+    head = {'User-Agent': 'Chris Brown'}
     count = get('https://www.reddit.com/r/{}/about/json'.format(
         subreddit), headers=head).json()
     try:
