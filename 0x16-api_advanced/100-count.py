@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" count """
+""" contains script how to count number of subs """
 from requests import get
 from sys import argv
 
@@ -10,7 +10,7 @@ after = None
 def count_all(hotlist, word_list):
     count_dic = {word.lower(): 0 for word in word_list}
     for title in hotlist:
-        word = title.split(' ')
+        words = title.split(' ')
         for word in words:
             if count_dic.get(word) is not None:
                 count_dic[word] += 1
@@ -24,15 +24,15 @@ def count_all(hotlist, word_list):
 
 def count_words(subreddit, word_list):
     global hotlist
-    global afte
-    """ Lists the number of subscribers """
+    global after
+    """subs"""
     head = {'User-Agent': 'Chris Brown'}
     if after:
-        count = get('https://www/reddit.com/r/{}/hot.json?after={}'.format(
+        count = get('https://www.reddit.com/r/{}/hot.json?after={}'.format(
             subreddit, after), headers=head).json().get('data')
     else:
         count = get('https://www.reddit.com/r/{}/hot.json'.format(
-            subreddit, after), headers=head).json().get('data')
+            subreddit), headers=head).json().get('data')
     hotlist += [dic.get('data').get('title').lower()
                 for dic in count.get('children')]
     after = count.get('after')
